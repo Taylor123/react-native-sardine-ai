@@ -44,8 +44,12 @@ public class MobileIntelligenceModule extends ReactContextBaseJavaModule {
         if (additionalData.hasKey("flow")) {
             optionBuilder = optionBuilder.setFlow(additionalData.getString("flow"));
         }
-
-        MobileIntelligence.init(getCurrentActivity(), optionBuilder.build());
+        
+        try {
+            MobileIntelligence.init(getCurrentActivity(), optionBuilder.build());
+        } catch (Exception e) {
+            return promise.reject(e);
+        }
         promise.resolve(new Response(true, "Initialized successfully").getGson());
     }
 
