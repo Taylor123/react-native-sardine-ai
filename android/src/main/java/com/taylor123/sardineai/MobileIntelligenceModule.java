@@ -48,7 +48,7 @@ public class MobileIntelligenceModule extends ReactContextBaseJavaModule {
         try {
             MobileIntelligence.init(this.getReactApplicationContext(), optionBuilder.build());
             promise.resolve(new Response(true, "Initialized successfully").getGson());
-        } catch (Exception e) {
+        } catch (Throwable e) {
             promise.reject(e);
         }
     }
